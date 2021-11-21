@@ -86,8 +86,18 @@
       <button>Trigger a Global Error</button>
     </section>
   </main>
+                        
 
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "86e1c3f97b8646e2b509d2a5fda8a1f3"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
   <script>
+    TrackJS.track('Testing TrackJS!');
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -102,6 +112,94 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    //Adding buttons for Console Testing
+
+    let x = 0;
+    //console log
+    errorBtns[0].addEventListener('click', () => {
+      console.log("console log");
+    });
+    //console error
+    errorBtns[1].addEventListener('click', () => {
+      console.error("console error");
+    });
+    //console count
+    errorBtns[2].addEventListener('click', () => {
+      x++;
+      console.count();
+    });
+    //console warn
+    errorBtns[3].addEventListener('click', () => {
+      console.warn('console warning');
+    });
+    //console assert
+    errorBtns[4].addEventListener('click', () => {
+      console.assert(false, 'assert false');
+    });
+    //console clear
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+    //console dir
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(document.head);
+    });
+    //console dirxml
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(document);
+    });
+    //console group start
+    errorBtns[8].addEventListener('click', () => {
+      console.log('before start');
+      console.group('GROUP');
+      console.log('in group');
+    });
+    //console group end
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+      console.log('after group')
+    });
+    //console table
+    errorBtns[10].addEventListener('click', () => {
+      console.table(['a', 'b', 'c']);
+    });
+    //start timer
+    errorBtns[11].addEventListener('click', () => {
+      console.time('Timer');
+    });
+    //end timer
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd('Timer');
+    });
+    //console trace
+    errorBtns[13].addEventListener('click', () => {
+      console.trace('tracer');
+    });
+    //trigger a global error
+    errorBtns[14].addEventListener('click', () => {
+      throw globalError();
+    });
+
+    //Trying try/catch/finally/throw
+    let testing = 0;
+    try{
+      alert('start testing');
+      console.log(testin);
+    } catch (err){
+      alert('error has occured, did you mean testing?');
+      throw new error("no such variable found");
+    } finally{
+      alert('end of testing');
+    }
+
+    //custom error
+    class customError extends Error{
+      constructor(message){
+        super(message);
+        this.name = "ERROR";
+      }
+    }
   </script>
 </body>
 
